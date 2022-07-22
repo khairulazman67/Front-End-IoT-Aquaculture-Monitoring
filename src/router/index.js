@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import beranda from '../pages/Home.vue'
-import pakan from '../pages/Pakan.vue'
+import setting from '../pages/Setting.vue'
+import login from '../pages/Login.vue'
 
 const router = createRouter({
     history: createWebHistory('/'),
@@ -11,9 +12,14 @@ const router = createRouter({
             component: beranda,
         },
         {
-            path: '/pakan',
-            name: 'pakan',
-            component: pakan,
+            path: '/setting',
+            name: 'setting',
+            component: setting,
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: login,
         }
     ]
 })

@@ -9,9 +9,14 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.1",
+    "axios": "^0.27.2",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
+    "mqtt": "^4.3.7",
     "vue": "^3.0.0",
-    "vue-router": "^4.1.2"
+    "vue-mqtt": "^2.0.3",
+    "vue-router": "^4.1.2",
+    "vue-socket.io": "^3.0.10"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",

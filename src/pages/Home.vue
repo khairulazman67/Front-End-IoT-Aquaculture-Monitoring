@@ -65,8 +65,8 @@
                                 </div>
                                 <div class="w-2  bg-white my-2 rounded-xl "></div>
                                 <div class="w-1/2 mr-2 px-7 py-5 flex flex-col text-white font-bold">
-                                    <div class="text-lg ">INTENSITAS PAKAN</div>
-                                    <div class="text-3xl">50 Menit</div>
+                                    <div class="text-lg ">PAKAN BERIKUTNYA</div>
+                                    <div class="text-3xl">20:00</div>
                                 </div>
                             </div>
                             <div class="flex flex-row w-full gap-3">
@@ -88,21 +88,21 @@
                                             <div>
                                                 <img src="../assets/down_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">pH 6</div>
+                                            <div class="text-xs font-semibold mt-1">pH {{pH.min_limit}}</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
-                                        <div class="h-full flex flex-col items-center">
+                                        <div class="h-full flex flex-col items-center ">
                                             <div>
                                                 <img src="../assets/check.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">6pH - 8pH</div>
+                                            <div class="text-xs font-semibold mt-1 text-center">{{pH.min_limit}}pH-{{pH.max_limit}}pH</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/up_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">>8.5pH</div>
+                                            <div class="text-xs font-semibold mt-1">>pH {{pH.max_limit}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -125,21 +125,21 @@
                                             <div>
                                                 <img src="../assets/down_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">20°C</div>
+                                            <div class="text-xs font-semibold mt-1">{{temperatur.min_limit}}°C</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/check.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">20°C - 30°C</div>
+                                            <div class="text-xs font-semibold mt-1">{{temperatur.min_limit}}°C - {{temperatur.max_limit}}°C</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/up_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">>30°C</div>
+                                            <div class="text-xs font-semibold mt-1">>{{temperatur.max_limit}}°C</div>
                                         </div>
                                     </div>
                                 </div>
@@ -155,14 +155,14 @@
                                             <div>
                                                 <img src="../assets/warning.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1 text-center">5 NTU</div>
+                                            <div class="text-xs font-semibold mt-1 text-center">{{turbidity.min_limit}} NTU</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full  flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/check.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1 text-center">>=5 NTU</div>
+                                            <div class="text-xs font-semibold mt-1 text-center">>= {{turbidity.min_limit}} NTU</div>
                                         </div>
                                     </div>
                                 </div>
@@ -194,8 +194,8 @@
                                 </div>
                                 <div class="w-2  bg-white my-2 rounded-xl "></div>
                                 <div class="w-1/2 mr-2 px-7 py-5 flex flex-col text-white font-bold">
-                                    <div class="text-lg ">INTENSITAS PAKAN</div>
-                                    <div class="text-3xl">50 Menit</div>
+                                    <div class="text-lg ">PAKAN BERIKUTNYA</div>
+                                    <div class="text-3xl">20:00</div>
                                 </div>
                             </div>
                             <div class="flex flex-row w-full gap-3">
@@ -217,21 +217,21 @@
                                             <div>
                                                 <img src="../assets/down_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">pH 6</div>
+                                            <div class="text-xs font-semibold mt-1">pH {{pH.min_limit}}</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
-                                        <div class="h-full flex flex-col items-center">
+                                        <div class="h-full flex flex-col items-center ">
                                             <div>
                                                 <img src="../assets/check.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">6pH - 8pH</div>
+                                            <div class="text-xs font-semibold mt-1 text-center">{{pH.min_limit}}pH-{{pH.max_limit}}pH</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/up_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">>8.5pH</div>
+                                            <div class="text-xs font-semibold mt-1">>pH {{pH.max_limit}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -254,21 +254,21 @@
                                             <div>
                                                 <img src="../assets/down_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">20°C</div>
+                                            <div class="text-xs font-semibold mt-1">{{temperatur.min_limit}}°C</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/check.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">20°C - 30°C</div>
+                                            <div class="text-xs font-semibold mt-1">{{temperatur.min_limit}}°C - {{temperatur.max_limit}}°C</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/up_red.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1">>30°C</div>
+                                            <div class="text-xs font-semibold mt-1">>{{temperatur.max_limit}}°C</div>
                                         </div>
                                     </div>
                                 </div>
@@ -284,14 +284,14 @@
                                             <div>
                                                 <img src="../assets/warning.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1 text-center">5 NTU</div>
+                                            <div class="text-xs font-semibold mt-1 text-center">{{turbidity.min_limit}} NTU</div>
                                         </div>
                                         <div class="w-1 bg-black rounded-2xl"></div>
                                         <div class="h-full  flex flex-col items-center">
                                             <div>
                                                 <img src="../assets/check.png" class="h-7" alt="">
                                             </div>
-                                            <div class="text-xs font-semibold mt-1 text-center">>=5 NTU</div>
+                                            <div class="text-xs font-semibold mt-1 text-center">>= {{turbidity.min_limit}} NTU</div>
                                         </div>
                                     </div>
                                 </div>
@@ -311,10 +311,37 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Sidebar from '../components/Sidebar.vue';
 export default {
+    data() {
+        return {
+            temperatur : 0,
+            turbidity : 0,
+            pH : 0,
+        }
+    },
     components: {
         Sidebar,
     },
+    methods: {
+        getLimit(){
+            axios
+                .get(`http://localhost:3000/limits`)
+                .then(r => {
+                    console.log(r.data.data)
+                    this.turbidity = r.data.data[0]
+                    this.temperatur = r.data.data[1]
+                    this.pH = r.data.data[2]
+
+                    console.log('dskadnask',this.pH)
+                }).catch(e => {
+                    console.dir(e);
+                });
+        }
+    },
+    mounted(){
+        this.getLimit()
+    }
 }
 </script>

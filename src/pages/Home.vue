@@ -329,12 +329,10 @@ export default {
             axios
                 .get(`http://localhost:3000/limits`)
                 .then(r => {
-                    console.log(r.data.data)
                     this.turbidity = r.data.data[0]
                     this.temperatur = r.data.data[1]
                     this.pH = r.data.data[2]
 
-                    console.log('dskadnask',this.pH)
                 }).catch(e => {
                     console.dir(e);
                 });

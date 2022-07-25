@@ -16,7 +16,9 @@
     "vue": "^3.0.0",
     "vue-mqtt": "^2.0.3",
     "vue-router": "^4.1.2",
-    "vue-socket.io": "^3.0.10"
+    "vue-socket.io": "^3.0.10",
+    "vue-sweetalert2": "^5.0.5",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",

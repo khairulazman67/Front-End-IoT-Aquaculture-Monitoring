@@ -1,5 +1,7 @@
 <template>
-<aside :class="showMenu ? 'flex' : 'hidden'" class="h-full mx-2 w-40 flex items-center flex-col justify-center rounded-3xl bg-primary-900 ">
+    <div class="h-screen py-5 px-5">
+        <div class="flex h-full flex-row">
+            <aside :class="showMenu ? 'flex' : 'hidden'" class="h-full mx-2 w-40 flex items-center flex-col justify-center rounded-3xl bg-primary-900 ">
                 <div class="w-20 mb-7">
                     <img src="../assets/user.jpeg" alt=""  class="shadow rounded-full max-w-full h-auto align-middle border-4 border-white">
                 </div>
@@ -36,30 +38,43 @@
                     </div>
                 </a>
             </aside>
+            <!-- <Sidebar></Sidebar> -->
+            <main class="h-full mx-3 w-full rounded-3xl  flex flex-col">
+                <div class="w-full py-3  bg-primary-900 mb-5 rounded-3xl flex items-center pl-5">
+                    <div class="text-white text-xl font-bold flex flex-row" >
+                        <button  @click="toggleNav()" >
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <div  class="ml-3 ">Beranda</div>
+                    </div>
+                </div>
+                <div class="w-full h-full rounded-3xl flex flex-row xs:flex-col gap-6 ">
+                    <div class="w-1/2 xs:w-full h-full bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
+                    </div>
+                    <div class="w-1/2 xs:w-full h-full bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
 </template>
 
 <script>
-// import axios from 'axios';
+// import Sidebar from '../components/Sidebar.vue';
 export default {
-    methods: {
-        signout(){
-            event.preventDefault();
-            this.$store.dispatch('logout', {
-                success: () => {
-                    this.$router.push({name: 'login', params: []});
-                }
-            });
-        },
-        async checklogged() {
-            var user =  JSON.parse(localStorage.getItem('user'))
-            if(!user){
-                this.$router.push({name: 'login', params: []});
-            }
-        },
+    data() {
+        return {
+            showMenu : true,
+        }
     },
-    mounted(){
-        this.$store.commit('setHeaders')
-        this.checklogged()
+    // components: {
+    //     Sidebar,
+    // },
+    methods: {
+        toggleNav(){
+            this.showMenu = this.showMenu===false?true:false
+            console.log(this.showMenu)
+        }
     }
 }
 </script>

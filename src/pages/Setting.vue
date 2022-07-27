@@ -286,7 +286,7 @@ export default {
         },
         getFeedingTimes(){
             axios
-                .get(`/feeding_times`)
+                .get(`${BACKEND_SERVICE_URL}/feeding_times`)
                 .then(r => {
 
                     this.feeding_times = r.data.data
@@ -304,7 +304,7 @@ export default {
                     time : data
                 }
                 axios
-                    .put(`/feeding_times/${id}`,dat)
+                    .put(`${BACKEND_SERVICE_URL}/feeding_times/${id}`,dat)
                     // .then(r =>{
                     //     console.log(r)
                     // })

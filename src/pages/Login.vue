@@ -49,6 +49,7 @@
 <script>
     import axios from 'axios';
     import Swal from 'sweetalert2'
+    import { BACKEND_SERVICE_URL } from '../constant';
     // import {useStore} from 'vuex'
 
     export default {
@@ -71,7 +72,7 @@
                         password: this.datalogin.password,
                     }
                 axios
-                .post(`http://localhost:3000/users/login`,datalogin)
+                .post(`${BACKEND_SERVICE_URL}/users/login`,datalogin)
                 .then(r => {
                     //set local storage token
                     localStorage.setItem('login',JSON.stringify(r.data.data));

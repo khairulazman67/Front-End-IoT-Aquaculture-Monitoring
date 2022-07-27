@@ -8,22 +8,22 @@ const router = createRouter({
     history: createWebHistory('/'),
     routes: [
         {
-            path: '/web/',
+            path: '/',
             name: 'beranda',
             component: beranda,
         },
         {
-            path: '/web/setting',
+            path: '/setting',
             name: 'setting',
             component: setting,
         },
         {
-            path: '/web/login',
+            path: '/login',
             name: 'login',
             component: login,
         },
         {
-            path: '/web/report',
+            path: '/report',
             name: 'report',
             component: report,
         }

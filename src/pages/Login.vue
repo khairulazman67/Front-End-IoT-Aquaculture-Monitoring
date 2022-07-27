@@ -93,7 +93,7 @@
             },
             getUser(){
                 axios
-                    .get(`http://localhost:3000/users/1`)
+                    .get(`${BACKEND_SERVICE_URL}/users/1`)
                     .then(r => {
                         console.log(r)
                         localStorage.setItem('user',JSON.stringify(r.data.data));

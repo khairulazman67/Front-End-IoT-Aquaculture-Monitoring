@@ -315,6 +315,7 @@
 
 <script>
 import axios from 'axios';
+import { BACKEND_SERVICE_URL } from '../constant';
 // import Sidebar from '../components/Sidebar.vue';
 export default {
     data() {
@@ -334,7 +335,7 @@ export default {
         },
         getLimit(){
             axios
-                .get(`http://localhost:3000/limits`)
+                .get(`${BACKEND_SERVICE_URL}/limits`)
                 .then(r => {
                     this.turbidity = r.data.data[0]
                     this.temperatur = r.data.data[1]

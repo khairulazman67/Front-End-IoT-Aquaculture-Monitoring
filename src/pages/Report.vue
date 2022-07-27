@@ -194,6 +194,7 @@
 <script>
 // import Sidebar from '../components/Sidebar.vue';
 import axios from 'axios';
+import { BACKEND_SERVICE_URL } from '../constant';
 export default {
     data() {
         return {
@@ -217,7 +218,7 @@ export default {
         },
         getDataSensor(){
             axios
-                .get(`http://localhost:3000/reports/1`)
+                .get(`${BACKEND_SERVICE_URL}/reports/1`)
                 .then(r => {
                     this.dataTurbidity = r.data.data
                     console.log(this.dataTurbidity)
@@ -226,7 +227,7 @@ export default {
                 });
 
             axios
-                .get(`http://localhost:3000/reports/2`)
+                .get(`${BACKEND_SERVICE_URL}/reports/2`)
                 .then(r => {
                     this.dataTurbidity = r.data.data
                     console.log(this.dataTemperatur)
@@ -235,7 +236,7 @@ export default {
                 });
 
             axios
-                .get(`http://localhost:3000/reports/3`)
+                .get(`${BACKEND_SERVICE_URL}/reports/3`)
                 .then(r => {
                     this.datapH = r.data.data
                     console.log(this.datapH)

@@ -223,6 +223,7 @@
 import axios from 'axios';
 // import Sidebar from '../components/Sidebar.vue';
 import Swal from 'sweetalert2'
+import { BACKEND_SERVICE_URL } from '../constant';
 // import mqtt from 'mqtt'
 export default {
     data() {
@@ -265,7 +266,7 @@ export default {
         },
         getLimit(){
             axios
-                .get(`http://localhost:3000/limits`)
+                .get(`${BACKEND_SERVICE_URL}/limits`)
                 .then(r => {
                     this.turbidity = r.data.data[0]
                     this.temperatur = r.data.data[1]
@@ -285,7 +286,7 @@ export default {
         },
         getFeedingTimes(){
             axios
-                .get(`http://localhost:3000/feeding_times`)
+                .get(`/feeding_times`)
                 .then(r => {
 
                     this.feeding_times = r.data.data
@@ -303,7 +304,7 @@ export default {
                     time : data
                 }
                 axios
-                    .put(`http://localhost:3000/feeding_times/${id}`,dat)
+                    .put(`/feeding_times/${id}`,dat)
                     // .then(r =>{
                     //     console.log(r)
                     // })
@@ -325,7 +326,7 @@ export default {
         updateTurbidity(){
             console.log(this.update_turbidity)
             axios
-                .put(`http://localhost:3000/limits/1`,this.update_turbidity)
+                .put(`${BACKEND_SERVICE_URL}/limits/1`,this.update_turbidity)
                 .then(r =>{
                     if(r.data.status==='success'){
                         Swal.fire(
@@ -347,7 +348,7 @@ export default {
         },
         updateTemperatur(){
             axios
-                .put(`http://localhost:3000/limits/2`,this.update_temperatur)
+                .put(`${BACKEND_SERVICE_URL}/limits/2`,this.update_temperatur)
                 .then(r =>{
                     if(r.data.status==='success'){
                         Swal.fire(
@@ -369,7 +370,7 @@ export default {
         },
         updatePH(){
             axios
-                .put(`http://localhost:3000/limits/3`,this.update_pH)
+                .put(`${BACKEND_SERVICE_URL}/limits/3`,this.update_pH)
                 .then(r =>{
                     console.log(r.data.status==='success')
                     if(r.data.status==='success'){

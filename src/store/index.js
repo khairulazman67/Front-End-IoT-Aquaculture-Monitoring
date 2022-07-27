@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {createStore} from 'vuex';
+import { BACKEND_SERVICE_URL } from '../constant';
 // import Swal from 'sweetalert2'
 export default createStore({
     state(){
@@ -27,7 +28,7 @@ export default createStore({
                 email : user.email
             }
             axios
-                .post(`http://localhost:3000/refresh_tokens/refresh`,refresh)
+                .post(`${BACKEND_SERVICE_URL}/refresh_tokens/refresh`,refresh)
                 .then(r => {
                     data.token = r.data.data.token
                     localStorage.setItem('login',JSON.stringify(data));
@@ -43,7 +44,7 @@ export default createStore({
                 user_id : user.id
             }
             axios
-                .post('http://localhost:3000/users/logout',data)
+                .post(`${BACKEND_SERVICE_URL}/users/logout`,data)
                 .then(function () {
                     // console.log(r.data.status)
                     commit('clearUserData');

@@ -30,7 +30,7 @@
                         <div class="text-white text-base xs:text-xs mt-1">Report</div>
                     </div>
                 </router-link>
-                <a href="#" class="mt-4" :to="{name:'login',params:{}}">
+                <a href="#" class="mt-4" @click="signout">
                     <div class="flex flex-col items-center text-secondary-900 hover:text-white ">
                         <div class="flex items-center justify-center h-16 w-16 xs:w-10 xs:h-10 xs:rounded-xl rounded-2xl bg-white hover:bg-secondary-900">
                             <i class="fa-solid fa-right-from-bracket text-xl"></i>
@@ -52,14 +52,14 @@
                     </div>
                 </div>
                 <div class="w-full h-full rounded-3xl flex flex-row xs:flex-col gap-6  overflow-y-auto">
-                    <div class="w-1/3 xs:w-full h-screen bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
+                    <div class="w-1/3 xs:w-full h-full bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
                         <canvas id="myChart" class="w-full h-4 mb-4" ></canvas>
                         <div class="h-14 rounded-t-3xl bg-secondary-900 px-4 py-4 text-lg font-bold text-white">
                             <div>Data Sensor Turbidity</div>
                         </div>
-                        <div class="px-4 py-4 h-full flex justify-center flex-col">
+                        <div class="px-4 py-4 h-auto flex justify-center flex-col">
                             <div class="flex flex-row gap-2 my-2 text-white font-bold justify-center">
-                                <button @click="getAllDatabyId(1)" class="bg-primary-900 hover:bg-blue-400 py-2 px-5 rounded-lg">All</button>
+                                <button @click="getDataSensor(1)" class="bg-primary-900 hover:bg-blue-400 py-2 px-5 rounded-lg">All</button>
                                 <button @click="getDataFilter(1,0)" class="bg-red-600 hover:bg-red-700 py-2 px-5 rounded-lg">Danger</button>
                                 <button  @click="getDataFilter(1,1)" class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg">Normal</button>
                             </div>
@@ -100,20 +100,18 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
-                    
-                    <div class="w-1/3 xs:w-full h-screen bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
+                    <div class="w-1/3 xs:w-full h-full bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
                         <canvas id="myChart2" class="w-full h-4 mb-4" ></canvas>
                         <div class="h-14 rounded-t-3xl bg-secondary-900 px-4 py-4 text-lg font-bold text-white">
                             <div>Data Sensor pH</div>
                         </div>
                         <div class="px-4 py-4 h-auto flex justify-center flex-col">
                             <div class="flex flex-row gap-2 my-2 text-white font-bold justify-center">
-                                <button @click="getAllDatabyId(3)" class="bg-primary-900 hover:bg-blue-400 py-2 px-5 rounded-lg">All</button>
-                                <button @click="getDataFilter(3,0)" class="bg-red-600 hover:bg-red-700 py-2 px-5 rounded-lg">Danger</button>
-                                <button  @click="getDataFilter(3,1)" class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg">Normal</button>
+                                <button @click="getDataSensor(2)" class="bg-primary-900 hover:bg-blue-400 py-2 px-5 rounded-lg">All</button>
+                                <button @click="getDataFilter(2,0)" class="bg-red-600 hover:bg-red-700 py-2 px-5 rounded-lg">Danger</button>
+                                <button  @click="getDataFilter(2,1)" class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg">Normal</button>
                             </div>
                             <div class="w-full h-1 bg-gray-200 rounded-xl my-2"></div>
                             <div class="overflow-y-auto overflow-x-auto h-96 shadow-md sm:rounded-lg flex justify-center ">
@@ -136,12 +134,12 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr v-for="(c,i) in datapH" :key="i" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <tr  v-for="(c,i) in datapH" :key="i" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row" class="text-center  font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{i+1}}
                                             </th>
                                             <td class="py-2 px-2">
-                                                pH
+                                                Turbidity
                                             </td>
                                             <td class="py-2 px-2 text-center">
                                                 {{c.value}}
@@ -156,16 +154,16 @@
 
                         </div>
                     </div>
-                    <div class="w-1/3 xs:w-full h-screen bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
+                    <div class="w-1/3 xs:w-full h-full bg-white shadow-xl mr-2 rounded-3xl flex flex-col ">
                         <canvas id="myChart3" class="w-full h-4 mb-4" ></canvas>
                         <div class="h-14 rounded-t-3xl bg-secondary-900 px-4 py-4 text-lg font-bold text-white">
                             <div>Data Sensor Temperatur</div>
                         </div>
                         <div class="px-4 py-4 h-auto flex justify-center flex-col">
                             <div class="flex flex-row gap-2 my-2 text-white font-bold justify-center">
-                                <button @click="getAllDatabyId(2)" class="bg-primary-900 hover:bg-blue-400 py-2 px-5 rounded-lg">All</button>
-                                <button @click="getDataFilter(2,0)" class="bg-red-600 hover:bg-red-700 py-2 px-5 rounded-lg">Danger</button>
-                                <button  @click="getDataFilter(2,1)" class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg">Normal</button>
+                                <button @click="getDataSensor(3)" class="bg-primary-900 hover:bg-blue-400 py-2 px-5 rounded-lg">All</button>
+                                <button @click="getDataFilter(3,0)" class="bg-red-600 hover:bg-red-700 py-2 px-5 rounded-lg">Danger</button>
+                                <button  @click="getDataFilter(3,1)" class="bg-green-600 hover:bg-green-700 py-2 px-5 rounded-lg">Normal</button>
                             </div>
                             <div class="w-full h-1 bg-gray-200 rounded-xl my-2"></div>
                             <div class="overflow-y-auto overflow-x-auto h-96 shadow-md sm:rounded-lg flex justify-center">
@@ -186,14 +184,13 @@
                                             </th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <tr  v-for="(c,i) in dataTemperatur" :key="i" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 ">
                                             <th scope="row" class="text-center  font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{i+1}}
                                             </th>
                                             <td class="py-2 px-2">
-                                                Temperatur
+                                                Turbidity
                                             </td>
                                             <td class="py-2 px-2 text-center">
                                                 {{c.value}}
@@ -241,34 +238,38 @@ export default {
             let date = new Date(v);
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
         },
-        async getDataSensor(id){
-            return await axios.get(`${BACKEND_SERVICE_URL}/reports/${id}`)
-        },
-        async getAllDatabyId(id){
-            let dataTurbidity = await this.getDataSensor(id)
-            let dataTemperatur =  await this.getDataSensor(id)
-            let datapH =  await this.getDataSensor(id)
-
+        getDataSensor(id){
             if(id===1){
-                this.dataTurbidity= dataTurbidity.data.data
+                axios
+                .get(`${BACKEND_SERVICE_URL}/reports/${id}`)
+                .then(r => {
+                    this.dataTurbidity = r.data.data
+                }).catch(e => {
+                    console.dir(e);
+                });
+
             }else if(id===2){
-                this.dataTemperatur = dataTemperatur.data.data
+                axios
+                .get(`${BACKEND_SERVICE_URL}/reports/${id}`)
+                .then(r => {
+                    this.dataTemperatur = r.data.data
+                }).catch(e => {
+                    console.dir(e);
+                });
             }else if(id===3){
-                this.datapH =  datapH.data.data
+                axios
+                    .get(`${BACKEND_SERVICE_URL}/reports/${id}`)
+                    .then(r => {
+                        this.datapH = r.data.data
+                    }).catch(e => {
+                        console.dir(e);
+                    });
             }
         },
-        async getAll(){
-            try{
-                let dataTurbidity = await this.getDataSensor(1)
-                let dataTemperatur =  await this.getDataSensor(2)
-                let datapH =  await this.getDataSensor(3)
-
-                this.dataTurbidity= dataTurbidity.data.data
-                this.dataTemperatur = dataTemperatur.data.data
-                this.datapH =  datapH.data.data
-            }catch(err){
-                console.error(err)
-            }
+        getAll(){
+            this.getDataSensor(1)
+            this.getDataSensor(2)
+            this.getDataSensor(3)
         },
         getLimit(){
             axios
@@ -277,12 +278,12 @@ export default {
                     this.limit.turbidity = r.data.data[0]
                     this.limit.temperatur = r.data.data[1]
                     this.limit.pH = r.data.data[2]
+                    
                 }).catch(e => {
                     console.dir(e);
                 });
         },
         async getDataFilter(id,cek){
-            await this.getAllDatabyId(id)
             function getData(data, min_limit, max_limit){
                 let outData = []
                 var index = 0;
@@ -315,21 +316,16 @@ export default {
                 this.datapH=getData(this.datapH,this.limit.pH.min_limit, this.limit.pH.max_limit,cek)
             }
         },
-        chart(name,data,nama){
-            let nilai = []
-            let index = []
-            for(var i =0 ;i<data.length;i++){
-                index[i] = i+1
-                nilai[i] = data[i]['value']
-            }
+        chart(name){
+            console.log('data',this.dataTurbidity)
             const ctx = document.getElementById(name).getContext('2d');
             const myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: index,
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                     datasets: [{
-                        label: nama,
-                        data: nilai,
+                        label: 'My First Dataset',
+                        data: [65, 59, 80, 81, 56, 55, 40],
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.1
@@ -346,14 +342,11 @@ export default {
             return myChart
         }
     },
-    async mounted(){
-        await this.getAll()
-        await this.getLimit()
+    mounted(){
+        this.getAll()
+        this.getLimit()
 
 
-        this.chart('myChart',this.dataTurbidity,'Sensor Turbidity')
-        this.chart('myChart2',this.dataTemperatur,'Sensor Temperatur')
-        this.chart('myChart3',this.datapH,'Sensor pH')
     }
 }
 </script>

@@ -151,7 +151,7 @@
                             <div class="bg-primary-900 rounded-t-2xl px-10 text-center w-full text-white py-3 font-semibold text-2xl xs:text-lg">
                                 LIMIT SENSOR PH
                             </div>
-                            <div class="flex flex-row w-full justify-between items-center">
+                            <div class="flex flex-row w-full  justify-between items-center">
                                 <div class="bg-cream-900 w-1/2 ml-5 mr-2 my-5 px-3 py-3 h-auto rounded-3xl">
                                     <form @submit.prevent="updatePH" action="">
                                         <label class="block text-gray-700 text-lg font-bold mb-2 xs:text-xs" for="password">
@@ -185,33 +185,6 @@
                             </div>
                         </div>
                         <!-- Sensor Turbidity -->
-                        <div class="col-span-2 mt-5  bg-white rounded-t-3xl rounded-b-3xl shadow-lg">
-                            <div class="bg-primary-900 rounded-t-2xl px-10 text-center w-full text-white py-3 font-semibold text-2xl xs:text-lg">
-                                LIMIT SENSOR TURBIDITY
-                            </div>
-                            <div class="flex flex-row w-full justify-between items-center">
-                                <div class="bg-cream-900 w-1/2 ml-5 mr-2 my-5 px-3 py-3 h-auto rounded-3xl">
-                                    <form @submit.prevent="updateTurbidity" action="">
-                                        <label class="block text-gray-700 text-lg font-bold mb-2 xs:text-xs" for="password">
-                                            Batas Minimum :
-                                        </label>
-                                        <input v-model="update_turbidity.min_limit"
-                                            class="shadow h-12 text-xs rounded-2xl appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                                            type="text" placeholder="1">
-                                        <div class="flex flex-row justify-end mt-3">
-                                            <!-- <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded-xl">Batal</button> -->
-                                            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 rounded-xl ml-2">Simpan</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="w-1/2 ml-2 mr-5 flex flex-col items-center">
-                                    <div class="bg-primary-900 text-white h-auto mx-3 my-3 rounded-3xl w-full flex items-center justify-center flex-col py-5">
-                                        <div class="font-semibold text-xl xs:text-base">Batas Minimum</div>
-                                        <div class="font-semibold text-2xl xs:text-lg">{{turbidity.min_limit}} NTU</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </main>
@@ -262,7 +235,7 @@ export default {
     methods: {
         toggleNav(){
             this.showMenu = this.showMenu===false?true:false
-            console.log(this.showMenu)
+            // console.log(this.showMenu)
         },
         getLimit(){
             axios
@@ -290,7 +263,7 @@ export default {
                 .then(r => {
 
                     this.feeding_times = r.data.data
-                    console.log('sadas',this.feeding_times)
+                    // console.log('sadas',this.feeding_times)
                     this.update_feeding.waktu_pagi = this.feeding_times[0].time.substring(0, 5)
                     this.update_feeding.waktu_siang = this.feeding_times[1].time.substring(0, 5)
                     this.update_feeding.waktu_malam = this.feeding_times[2].time.substring(0, 5)
@@ -324,7 +297,7 @@ export default {
             }
         },
         updateTurbidity(){
-            console.log(this.update_turbidity)
+            // console.log(this.update_turbidity)
             axios
                 .put(`${BACKEND_SERVICE_URL}/limits/1`,this.update_turbidity)
                 .then(r =>{
@@ -372,7 +345,7 @@ export default {
             axios
                 .put(`${BACKEND_SERVICE_URL}/limits/3`,this.update_pH)
                 .then(r =>{
-                    console.log(r.data.status==='success')
+                    // console.log(r.data.status==='success')
                     if(r.data.status==='success'){
                         Swal.fire(
                             'Berhasil!',

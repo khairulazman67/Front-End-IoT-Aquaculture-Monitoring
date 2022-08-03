@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "serve -s dist -p 8080",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "axios": "^0.27.2",
+    "chart.js": "^3.8.2",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "mqtt": "^4.3.7",

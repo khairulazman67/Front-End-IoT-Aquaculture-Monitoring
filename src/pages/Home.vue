@@ -336,14 +336,14 @@ export default {
             turbidity : 0,
             pH : 0,
             waktuPakan : null,
-            sisaPakan1 :null,
-            sisaPakan2 :null,
-            lastPH1:null,
-            lastPH2:null,
-            lastTurbidity1:null,
-            lastTurbidity2:null,
-            lastTemp1:null,
-            lastTemp2:null,
+            sisaPakan1 :0,
+            sisaPakan2 :0,
+            lastPH1:0,
+            lastPH2:0,
+            lastTurbidity1:0,
+            lastTurbidity2:0,
+            lastTemp1:0,
+            lastTemp2:0,
         }
     },
     // components: {
@@ -427,22 +427,11 @@ export default {
                 .get(`${BACKEND_SERVICE_URL}/reports/feedcap/1`)
                 .then(r => {
                     this.sisaPakan1 = r.data.data.value
-                    // console.log('sissa',r.data.data.value)
-
-                }).catch(e => {
-                    console.dir(e);
-                });
-            
-            axios
-                .get(`${BACKEND_SERVICE_URL}/reports/feedcap/2`)
-                .then(r => {
                     this.sisaPakan2 = r.data.data.value
                     // console.log('sissa',r.data.data.value)
-
                 }).catch(e => {
                     console.dir(e);
                 });
-
             axios
                 .get(`${BACKEND_SERVICE_URL}/reports/lastTurbidity/1`)
                 .then(r => {

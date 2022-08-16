@@ -424,10 +424,10 @@ export default {
         },
         getlastdata(){
             axios
-                .get(`${BACKEND_SERVICE_URL}/reports/feedcap/1`)
+                .get(`${BACKEND_SERVICE_URL}/reports/feedcap/0`)
                 .then(r => {
-                    this.sisaPakan1 = r.data.data.value
-                    this.sisaPakan2 = r.data.data.value
+                    this.sisaPakan1 = r.data.data.value.toFixed(2)
+                    this.sisaPakan2 = r.data.data.value.toFixed(2)
                     // console.log('sissa',r.data.data.value)
                 }).catch(e => {
                     console.dir(e);

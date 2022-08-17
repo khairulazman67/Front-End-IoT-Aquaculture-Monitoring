@@ -37,8 +37,8 @@
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-xl rounded-xl py-4 px-6 focus:outline-none focus:shadow-outline">Sign In</button>
                         </div>
                     </form>
-                    <button @click="getUser()" class="bg-red-800">Get User</button>
-                    <button @click="refreshToken()" class="bg-blue-800">Refresh</button>
+                    <!-- <button @click="getUser()" class="bg-red-800">Get User</button>
+                    <button @click="refreshToken()" class="bg-blue-800">Refresh</button> -->
 
                 </div>
             </div>
@@ -91,22 +91,22 @@
                     console.error(e.response.data.status);
                 })
             },
-            getUser(){
-                axios
-                    .get(`${BACKEND_SERVICE_URL}/users/1`)
-                    .then(r => {
-                        console.log(r)
-                        localStorage.setItem('user',JSON.stringify(r.data.data));
-                    }).catch(e => {
-                        // console.dir(e);
-                        console.error(e.response.data.status);
-                        if(e.response.data.message==='jwt expired'){
-                            console.log('masok')
-                            this.$store.dispatch('refreshToken')
-                            this.getUserData()
-                        }
-                    });
-            },
+            // getUser(){
+            //     axios
+            //         .get(`${BACKEND_SERVICE_URL}/users/1`)
+            //         .then(r => {
+            //             console.log(r)
+            //             localStorage.setItem('user',JSON.stringify(r.data.data));
+            //         }).catch(e => {
+            //             // console.dir(e);
+            //             console.error(e.response.data.status);
+            //             if(e.response.data.message==='jwt expired'){
+            //                 console.log('masok')
+            //                 this.$store.dispatch('refreshToken')
+            //                 this.getUserData()
+            //             }
+            //         });
+            // },
         },
         mounted(){
             this.setHeader()

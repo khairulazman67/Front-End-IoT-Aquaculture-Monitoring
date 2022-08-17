@@ -352,8 +352,8 @@ export default {
 
 
         this.chart('myChart',this.dataTurbidity,'Sensor Turbidity')
-        this.chart('myChart2',this.dataTemperatur,'Sensor Temperatur')
-        this.chart('myChart3',this.datapH,'Sensor pH')
+        this.chart('myChart3',this.dataTemperatur,'Sensor Temperatur')
+        this.chart('myChart2',this.datapH,'Sensor pH')
     }
 }
 </script>

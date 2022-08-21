@@ -385,6 +385,7 @@ export default {
             }
             // get feeding time from api
             let getDataFeeding =  await this.getFeeding()
+            console.log('feeding times',this.getDataFeeding)
             let dataFeeding = getDataFeeding.data.data
             let waktunya = [] 
             //  get field time from data and save to waktunya variabel

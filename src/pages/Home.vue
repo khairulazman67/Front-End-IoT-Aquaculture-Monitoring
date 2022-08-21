@@ -29,7 +29,7 @@
                         <div class="text-white text-base xs:text-xs mt-1">Report</div>
                     </div>
                 </router-link>
-                <a href="#" class="mt-4" @click="signout">
+                <a href="#" class="mt-4" @click="logout">
                     <div class="flex flex-col items-center text-secondary-900 hover:text-white ">
                         <div class="flex items-center justify-center h-16 w-16 xs:w-10 xs:h-10 xs:rounded-xl rounded-2xl bg-white hover:bg-secondary-900">
                             <i class="fa-solid fa-right-from-bracket text-xl"></i>
@@ -492,7 +492,7 @@ export default {
                 }).catch(e => {
                     console.dir(e);
                 });
-            
+
             axios
                 .get(`${BACKEND_SERVICE_URL}/reports/lastph/1`)
                 .then(r => {
@@ -513,6 +513,9 @@ export default {
                     console.dir(e);
                 });
 
+        },
+        logout(){
+            this.$store.dispatch('logout')
         }
 
     },
@@ -520,6 +523,9 @@ export default {
         this.getLimit(),
         // this.getFeeding();
         // this.convertTime('23:00:00');
+
+        // let userdata = await axios.get(`${BACKEND_SERVICE_URL}/users/1`)
+        // console.log()
         await this.nearestTime()
         await this.getlastdata()
     }

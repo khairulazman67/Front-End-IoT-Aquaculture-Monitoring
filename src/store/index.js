@@ -14,12 +14,17 @@ export default createStore({
                 axios.defaults.headers.Authorization = data.token
             }
         },
+        setUserData(){
+            console.log('anjay')
+        },
         clearUserData() {
             localStorage.removeItem('user');
-            localStorage.removeItem('login');
+            localStorage.removeItem('refresh_token');
+            location.reload();
         }
     },
     actions:{
+        
         refreshToken(){
             var data = JSON.parse(localStorage.getItem('login'))
             var user =  JSON.parse(localStorage.getItem('user'))
@@ -38,25 +43,46 @@ export default createStore({
                     console.dir(e);
                 });
         },
-        logout({commit}, request) {
+        login({commit},request) {
+            console.log(request.credentials)
+            return axios
+            .post(`${BACKEND_SERVICE_URL}/users/login`, request.credentials)
+            .then(({ data }) => {
+                commit('setUserData', data)
+
+                console.log('ini token ',data.data.token)
+                axios.defaults.headers.Authorization = data.data.token
+                localStorage.setItem('refresh_token',JSON.stringify(data.data.refresh_token));
+                localStorage.setItem('user',JSON.stringify(axios.get(`${BACKEND_SERVICE_URL}/users/1`)));
+
+                request.callback({
+                    status: 200,
+                    data,
+                })
+                // request.callback({
+                //     status: 403,
+                //     data,
+                // }) 
+            });
+        },
+        logout({commit}) {
             var user =  JSON.parse(localStorage.getItem('user'))
             var data = {
                 user_id : user.id
             }
+            console.log(data)
             axios
                 .post(`${BACKEND_SERVICE_URL}/users/logout`,data)
                 .then(function () {
                     // console.log(r.data.status)
                     commit('clearUserData');
-                    request.success()
+                    commit('clearUserData')
                 })
                 .catch(e => {
                     console.error(e)
                     commit('clearUserData');
-                    request.success()
                 })
         },
-
     },
     getters:{},
 })

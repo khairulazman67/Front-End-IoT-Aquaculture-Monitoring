@@ -58,7 +58,7 @@ export default {
         },
     },
     mounted(){
-        this.$store.commit('setHeaders')
+        // this.$store.commit('setHeaders')
         this.checklogged()
     }
 }

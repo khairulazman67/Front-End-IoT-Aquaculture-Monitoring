@@ -47,38 +47,77 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    // import axios from 'axios';
     // import Swal from 'sweetalert2'
 
-    import { BACKEND_SERVICE_URL } from '../constant';
+    // import {useRouter} from 'vue-router';
+    // import { BACKEND_SERVICE_URL } from '../constant';
     // import {useStore} from 'vuex'
 
     export default {
-        setup(){
+        name: 'App',
+        // setup(){
+        //     const router = useRouter();
 
-            const submit = async e => {
-                const form = new FormData(e.target);
+        //     const submit = async e => {
+        //         const form = new FormData(e.target);
 
-                const inputs = Object.fromEntries(form.entries());
+        //         const inputs = Object.fromEntries(form.entries());
 
-                console.log('ini token ',inputs)
+        //         console.log('ini token ',inputs)
 
-                const {data} = await axios.post(`${BACKEND_SERVICE_URL}/users/login`,inputs)
+        //         const {data} = await axios.post(`${BACKEND_SERVICE_URL}/users/login`,inputs)
 
-                console.log('ini token ',data.data.token)
-                axios.defaults.headers.Authorization = data.data.token
-                localStorage.setItem('refresh_token',JSON.stringify(data.data.refresh_token));
+        //         console.log('ini token ',data.data.token)
+        //         axios.defaults.headers.Authorization = data.data.token
+        //         localStorage.setItem('refresh_token',JSON.stringify(data.data.refresh_token));
 
-                // let {user} = await axios.get(`${BACKEND_SERVICE_URL}/users/1`)
+        //         // let {user} = await axios.get(`${BACKEND_SERVICE_URL}/users/1`)
 
-                // console.log('data',await user)
-                localStorage.setItem('user',JSON.stringify(await axios.get(`${BACKEND_SERVICE_URL}/users/1`)));
-                location.reload();
-            }
+        //         // console.log('data',await user)
+        //         localStorage.setItem('user',JSON.stringify(await axios.get(`${BACKEND_SERVICE_URL}/users/1`)));
 
-            return{
-                submit
-            }
+        //         await router.push('/');
+        //     }
+
+        //     return{
+        //         submit
+        //     }
+        // }
+        methods: {
+            login() {
+                // const inputs = Object.fromEntries(form.entries());
+                this.$store.dispatch('login', {
+                    credentials: {
+                        email: this.email,
+                        password: this.password,
+                    },
+                    callback: (r) => {
+                        if (r.status == 403) {
+                            this.error = "Maaf, anda tidak diizinkan untuk masuk!"
+                        }else if(r.status == 200) {
+                            this.$emit('success')
+                        }
+                    },
+                }).catch(e => {
+                    let r = e.response;
+                    this.errors = {
+                        email: [],
+                        password: [],
+                    };
+                    if (r.status == 403) {
+                        let data = e.response.data.body;
+                        for (const key in data) {
+                            if (Object.hasOwnProperty.call(data, key)) {
+                                const val = data[key];
+                                this.errors[key] = val;
+                            }
+                        }
+                    } else {
+                        this.error = "Email atau Password anda salah!";
+                    }
+                });
+            },
         }
     }
 </script>
